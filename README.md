@@ -1,6 +1,49 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# FileShare
 
-# Getting Started
+A fast and secure file sharing app built with React Native that allows you to share files between devices over your local network.
+
+## Features
+
+### 🚀 Auto-Download
+- Files are automatically downloaded to your device after successful transfer
+- **Android**: Files are saved to `Downloads/FileShare` folder and are immediately visible in your Downloads app
+- **iOS**: Files are saved to `Documents/FileShare` folder and are accessible via the Files app
+- Automatic file type detection and proper MIME type handling
+- Success notifications with option to open files immediately
+
+### 🔒 Secure Transfer
+- TCP-based file transfer with optional TLS encryption
+- Local network communication for enhanced security
+- No internet connection required
+
+### 📱 Cross-Platform
+- Works seamlessly between Android and iOS devices
+- Unified interface and user experience across platforms
+
+### 📄 File Management
+- Support for all file types (documents, images, videos, audio, etc.)
+- Built-in file browser for received files
+- Transfer progress tracking
+- File size and type information
+
+### 🎯 Easy to Use
+- QR code scanning for quick device pairing
+- Simple send/receive interface
+- Real-time transfer status updates
+
+## File Storage Locations
+
+### Android
+- **Download Path**: `/storage/emulated/0/Download/FileShare/`
+- **Access**: Files are visible in the Downloads app and file managers
+- **Permissions**: Uses standard download permissions
+
+### iOS
+- **Download Path**: `Documents/FileShare/`
+- **Access**: Files are accessible via the Files app > On My iPhone/iPad > FileShare
+- **Permissions**: Uses document directory permissions
+
+## Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 

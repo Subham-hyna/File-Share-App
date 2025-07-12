@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>FileShare</string>
+	<string>File Fly</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,14 +26,46 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_http._tcp</string>
+	</array>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>This app needs access to the calendars to share files with other devices.</string>
+	<key>NSCalendersFullAccessUsageDescription</key>
+	<string>This app needs access to the calendars to share files with other devices.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to the camera to share files with other devices.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Your documents folder is used to save files that you want to share with other devices.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This app needs access to the local network to share files with other devices.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your microphone is used to record audio files that you want to share with other devices.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your photo library is used to save images that you want to share with other devices.</string>
+	<key>RCTNewArchEnabled</key>
+	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Okra-Bold.ttf</string>
+		<string>Okra-ExtraBold.ttf</string>
+		<string>Okra-Medium.ttf</string>
+		<string>Okra-MediumLight.ttf</string>
+		<string>Okra-Regular.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

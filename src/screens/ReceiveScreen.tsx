@@ -147,7 +147,7 @@ const ReceiveScreen:FC = () => {
             </View>
             <View style={styles.profileContainer}>
               <Image 
-                source={require('../assets/images/profile2.jpg')}
+                source={require('../assets/images/profile.jpg')}
                 style={styles.profileImage}
               />
             </View>

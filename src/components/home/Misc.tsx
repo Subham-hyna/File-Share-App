@@ -1,8 +1,8 @@
-import { View, Text, TouchableOpacity, Animated, StyleSheet, Dimensions, Platform } from 'react-native'
+import { View, Text, Animated, StyleSheet, Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from '../global/Icon'
-import { Colors, screenWidth } from '../../utils/Constants'
+import { Colors } from '../../utils/Constants'
 import { RFValue } from 'react-native-responsive-fontsize'
 
 const { width, height } = Dimensions.get('window')
@@ -10,17 +10,6 @@ const { width, height } = Dimensions.get('window')
 const Misc = () => {
   const [fadeAnim] = useState(new Animated.Value(0))
   const [slideAnim] = useState(new Animated.Value(50))
-  const [scaleAnims] = useState([
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-    new Animated.Value(1),
-  ])
   const [pulseAnim] = useState(new Animated.Value(1))
 
   // Daily quotes array
@@ -81,100 +70,6 @@ const Misc = () => {
     }
   }, [])
 
-  const handleCardPress = (index: number, action: string) => {
-    // Scale animation for card press
-    Animated.sequence([
-      Animated.timing(scaleAnims[index], {
-        toValue: 0.95,
-        duration: 100,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scaleAnims[index], {
-        toValue: 1,
-        duration: 100,
-        useNativeDriver: true,
-      }),
-    ]).start()
-    
-    console.log(`${action} pressed`)
-    // Add your action logic here
-  }
-
-  const miscOptions = [
-    {
-      title: 'Theme Settings',
-      subtitle: 'Dark/Light mode',
-      icon: 'color-palette-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#FF6B6B', '#FF5252'],
-      action: 'theme'
-    },
-    {
-      title: 'Display Preferences',
-      subtitle: 'Font size & layout',
-      icon: 'resize-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#4ECDC4', '#26A69A'],
-      action: 'display'
-    },
-    {
-      title: 'Language',
-      subtitle: 'Choose your language',
-      icon: 'language-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#45B7D1', '#1E88E5'],
-      action: 'language'
-    },
-    {
-      title: 'Notifications',
-      subtitle: 'Manage alerts',
-      icon: 'notifications-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#FFA726', '#FF9800'],
-      action: 'notifications'
-    },
-    {
-      title: 'Privacy & Security',
-      subtitle: 'Data protection',
-      icon: 'shield-checkmark-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#66BB6A', '#4CAF50'],
-      action: 'privacy'
-    },
-    {
-      title: 'Storage Management',
-      subtitle: 'Clean up files',
-      icon: 'folder-open-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#AB47BC', '#9C27B0'],
-      action: 'storage'
-    },
-    {
-      title: 'Rate File Fly',
-      subtitle: 'Love the app? Rate us!',
-      icon: 'star-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#FFCA28', '#FFC107'],
-      action: 'rate'
-    },
-    {
-      title: 'Help & Support',
-      subtitle: 'Get assistance',
-      icon: 'help-circle-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#7986CB', '#3F51B5'],
-      action: 'help'
-    },
-    {
-      title: 'About File Fly',
-      subtitle: 'App info & version',
-      icon: 'information-circle-outline',
-      iconFamily: 'Ionicons' as const,
-      colors: ['#8D6E63', '#5D4037'],
-      action: 'about'
-    },
-  ]
-
   return (
     <Animated.View style={[
       styles.container,
@@ -189,20 +84,6 @@ const Misc = () => {
         end={{ x: 1, y: 1 }}
         style={styles.backgroundGradient}
       >
-        {/* Header */}
-        <View style={styles.headerContainer}>
-          <LinearGradient
-            colors={['#667eea', '#764ba2']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.headerIconContainer}
-          >
-            <Icon name="options-outline" size={28} color="#FFFFFF" iconFamily="Ionicons" />
-          </LinearGradient>
-          <Text style={styles.headerTitle}>Preferences</Text>
-          <Text style={styles.headerSubtitle}>Customize your File Fly experience</Text>
-        </View>
-
         {/* Daily Quote Card */}
         <Animated.View style={[
           styles.quoteCard,
@@ -223,53 +104,6 @@ const Misc = () => {
             </View>
           </LinearGradient>
         </Animated.View>
-
-        {/* Cards Grid */}
-        <View style={styles.cardsContainer}>
-          {miscOptions.map((option, index) => (
-            <Animated.View
-              key={index}
-              style={[
-                styles.cardWrapper,
-                { transform: [{ scale: scaleAnims[index] }] }
-              ]}
-            >
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => handleCardPress(index, option.action)}
-                style={styles.cardTouchable}
-              >
-                <LinearGradient
-                  colors={option.colors}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.card}
-                >
-                  <View style={styles.cardIconContainer}>
-                    <Icon 
-                      name={option.icon} 
-                      size={24} 
-                      color="#FFFFFF" 
-                      iconFamily={option.iconFamily} 
-                    />
-                  </View>
-                  <View style={styles.cardContent}>
-                    <Text style={styles.cardTitle}>{option.title}</Text>
-                    <Text style={styles.cardSubtitle}>{option.subtitle}</Text>
-                  </View>
-                  <View style={styles.cardArrow}>
-                    <Icon 
-                      name="chevron-forward" 
-                      size={18} 
-                      color="#FFFFFF" 
-                      iconFamily="Ionicons" 
-                    />
-                  </View>
-                </LinearGradient>
-              </TouchableOpacity>
-            </Animated.View>
-          ))}
-        </View>
 
         {/* App Version Footer */}
         <View style={styles.footerContainer}>
@@ -297,44 +131,11 @@ const styles = StyleSheet.create({
   backgroundGradient: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  headerContainer: {
-    alignItems: 'center',
-    marginBottom: 25,
-  },
-  headerIconContainer: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    paddingTop: 60,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 8,
-  },
-  headerTitle: {
-    fontSize: RFValue(26),
-    fontWeight: 'bold',
-    color: Colors.text,
-    marginBottom: 5,
-    fontFamily: 'Okra-Bold',
-  },
-  headerSubtitle: {
-    fontSize: RFValue(14),
-    color: Colors.text,
-    opacity: 0.7,
-    textAlign: 'center',
-    fontFamily: 'Okra-Regular',
   },
   quoteCard: {
-    marginBottom: 25,
+    marginBottom: 40,
     borderRadius: 16,
     overflow: 'hidden',
     shadowColor: '#000',
@@ -376,65 +177,6 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     lineHeight: 18,
     fontFamily: 'Okra-Regular',
-  },
-  cardsContainer: {
-    flex: 1,
-    gap: 12,
-  },
-  cardWrapper: {
-    marginBottom: 2,
-  },
-  cardTouchable: {
-    borderRadius: 14,
-    overflow: 'hidden',
-  },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 18,
-    borderRadius: 14,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    elevation: 6,
-  },
-  cardIconContainer: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 14,
-  },
-  cardContent: {
-    flex: 1,
-  },
-  cardTitle: {
-    fontSize: RFValue(14),
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginBottom: 3,
-    fontFamily: 'Okra-Bold',
-  },
-  cardSubtitle: {
-    fontSize: RFValue(11),
-    color: '#FFFFFF',
-    opacity: 0.85,
-    fontFamily: 'Okra-Regular',
-  },
-  cardArrow: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   footerContainer: {
     alignItems: 'center',
